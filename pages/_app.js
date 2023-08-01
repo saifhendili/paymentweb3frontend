@@ -1,5 +1,6 @@
-import { ThirdwebProvider } from "@thirdweb-dev/react";
+import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import "../styles/globals.css";
+import { StateContextProvider } from "../context";
 
 // This is the chain your dApp will work on.
 // Change this to the chain your app is built for.
@@ -8,8 +9,11 @@ const activeChain = "ethereum";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThirdwebProvider activeChain={activeChain}>
+    <ThirdwebProvider activeChain="goerli" 
+    clientId="fb6c88adc89dd9b0186738102d0cba29" desiredChainId={ChainId.Goerli}>
+      <StateContextProvider>
       <Component {...pageProps} />
+      </StateContextProvider>
     </ThirdwebProvider>
   );
 }
